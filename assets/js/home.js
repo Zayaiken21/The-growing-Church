@@ -1,0 +1,9 @@
+import {init,$,el,safeUrl,cards} from './core.js';
+const c=await init();cards(c.ministries,'#ministries','ministries.html');const slides=c.slides.length?c.slides:[{eyebrow:'WELCOME',title:c.settings.name,text:c.settings.tagline,button:'Plan a visit',link:'visit.html'}];let index=0,paused=matchMedia('(prefers-reduced-motion: reduce)').matches,timer;
+function render(){const s=slides[index],frame=el('div',undefined,'slide fade'),copy=el('div',undefined,'slide-copy');copy.append(el('p',s.eyebrow,'eyebrow'),el('h1',s.title),el('p',s.text));const url=safeUrl(s.link);if(url){const a=el('a',s.button+' ↗','btn light');a.href=url;copy.append(a);}const art=el('div',undefined,'hero-art');art.setAttribute('aria-hidden','true');const img=safeUrl(s.image);if(s.image&&img)art.style.backgroundImage=`url(${JSON.stringify(img)})`;frame.append(copy,art);$('#slide').replaceChildren(frame);$('#slide').setAttribute('aria-live',paused?'polite':'off');document.querySelectorAll('.dot').forEach((d,i)=>{d.classList.toggle('active',i===index);d.setAttribute('aria-current',i===index?'true':'false');});}
+function schedule(){clearInterval(timer);if(!paused&&!document.hidden)timer=setInterval(()=>{index=(index+1)%slides.length;render();},6500);}
+function move(n){index=(index+n+slides.length)%slides.length;render();schedule();}
+slides.forEach((s,i)=>{const dot=el('button',undefined,'dot');dot.setAttribute('aria-label',`Go to slide ${i+1}`);dot.onclick=()=>{index=i;render();schedule();};$('#dots').append(dot);});
+$('#previous').onclick=()=>move(-1);$('#next').onclick=()=>move(1);
+function syncPause(){$('#pause').textContent=paused?'▶':'Ⅱ';$('#pause').setAttribute('aria-label',paused?'Play automatic slides':'Pause automatic slides');}
+$('#pause').onclick=()=>{paused=!paused;syncPause();schedule();};$('.hero').addEventListener('focusin',()=>{paused=true;syncPause();schedule();});document.addEventListener('visibilitychange',schedule);syncPause();render();schedule();
