@@ -1,4 +1,4 @@
-# Grace & Gather — church website
+# Greater St. Paul — church website
 
 A responsive, front-end-first church website for GitHub Pages. Vanilla HTML, CSS and JavaScript. No build step. Each page has its own HTML and JavaScript file. This is a customizable starter with sample church copy, not a live church deployment.
 
@@ -86,3 +86,7 @@ Official reference documentation:
 - https://supabase.com/docs/guides/database/postgres/row-level-security
 - https://supabase.com/docs/guides/functions
 - https://docs.github.com/en/pages
+
+## Greater St. Paul livestream update
+
+See **LIVESTREAM_SETUP.md** first for the YouTube integration. Home and Sermons now include the real Greater St. Paul broadcast archive, sliding featured services, status filters, search, and modal playback. The manual sermon cards have been replaced by this church-specific library; manual sermon content remains in the existing content record for backward compatibility but is no longer rendered on Sermons. Original login and recovery functions are preserved. Existing configured projects must keep their config.js and run only youtube-migration.sql for this update. Supabase cloud settings continue to override the sample defaults.

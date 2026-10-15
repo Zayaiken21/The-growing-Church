@@ -1,0 +1,85 @@
+{
+  "settings": {
+    "name": "Greater St. Paul",
+    "tagline": "A place to belong. A faith to grow.",
+    "service": "Sundays \u00b7 10:00 AM",
+    "address": "Add your church address",
+    "email": "hello@example.com",
+    "givingUrl": "",
+    "livestreamUrl": "https://www.youtube.com/@GreaterStPaulHDIWC/live"
+  },
+  "slides": [
+    {
+      "eyebrow": "WELCOME HOME",
+      "title": "There is a place\nfor you here.",
+      "text": "Come as you are. Find community, discover Jesus, and take your next step with people who care.",
+      "button": "Plan your visit",
+      "link": "visit.html",
+      "image": ""
+    },
+    {
+      "eyebrow": "FAITH FOR EVERYDAY LIFE",
+      "title": "Grow in faith.\nWalk together.",
+      "text": "Meaningful worship. Honest conversations. A community that brings hope into the everyday.",
+      "button": "Explore our ministries",
+      "link": "ministries.html",
+      "image": ""
+    },
+    {
+      "eyebrow": "LOVE IN ACTION",
+      "title": "Small acts.\nLasting hope.",
+      "text": "Use your gifts to serve your neighbors and help make our community a little brighter.",
+      "button": "Find your next step",
+      "link": "events.html",
+      "image": ""
+    }
+  ],
+  "ministries": [
+    {
+      "title": "Kids & families",
+      "text": "A welcoming space for little ones to discover faith, and families to build friendships.",
+      "detail": "Ask us about age groups and check-in."
+    },
+    {
+      "title": "Groups & connection",
+      "text": "Life is better together. Share a meal, explore Scripture, and build meaningful friendships.",
+      "detail": "Contact us to find a group."
+    },
+    {
+      "title": "Serve our neighbors",
+      "text": "Put love into action through practical care and local outreach.",
+      "detail": "Ask about current volunteer opportunities."
+    }
+  ],
+  "sermons": [
+    {
+      "title": "A hope that holds",
+      "text": "Discover a faith that stays with you through ordinary days and difficult seasons.",
+      "detail": "Featured message \u00b7 Add your speaker and date",
+      "url": ""
+    },
+    {
+      "title": "Room at the table",
+      "text": "What it means to welcome, belong, and love the people around us.",
+      "detail": "Community series \u00b7 Add your speaker and date",
+      "url": ""
+    }
+  ],
+  "events": [
+    {
+      "title": "Sunday gathering",
+      "text": "Gather for worship, teaching, and connection. Everyone is welcome.",
+      "detail": "Sundays \u00b7 10:00 AM"
+    },
+    {
+      "title": "Community table",
+      "text": "Meet your neighbors and share a meal together.",
+      "detail": "Date to be announced"
+    },
+    {
+      "title": "Serve together",
+      "text": "Join a practical project that supports our local community.",
+      "detail": "Date to be announced"
+    }
+  ]
+}

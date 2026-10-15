@@ -1,2 +1,3 @@
-import {init,cards,$,safeUrl} from './core.js';
-const c=await init();cards(c.sermons,'#sermons');const url=safeUrl(c.settings.livestreamUrl);if(c.settings.livestreamUrl&&url){$('#livestream').href=url;$('#livestream').hidden=false;}
+import {init} from './core.js';
+import {mountYouTube} from './youtube.js';
+await init();await mountYouTube('#church-broadcasts');

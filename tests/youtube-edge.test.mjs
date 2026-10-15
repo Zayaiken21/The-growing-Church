@@ -1,0 +1,18 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {stripTypeScriptTypes} from 'node:module';
+let handler,cache={id:1,data:null,discovery_at:null},claim=true,apiCalls=0,failAPI=false;
+let env={YOUTUBE_API_KEY:'test-server-key',SUPABASE_URL:'https://example.supabase.co',SUPABASE_SERVICE_ROLE_KEY:'test-service-key'};
+globalThis.Deno={env:{get:k=>env[k]},serve:fn=>{handler=fn;}};
+globalThis.__churchMockDB={from:()=>({select:()=>({eq:()=>({single:async()=>({data:cache,error:null})})}),update:update=>({eq:async()=>{Object.assign(cache,update);return {error:null};}})}),rpc:async()=>({data:claim,error:null})};
+let source=await fs.readFile(new URL('../supabase/functions/youtube-feed/index.ts',import.meta.url),'utf8');
+source=source.replace("import {createClient} from 'npm:@supabase/supabase-js@2.49.8';","const createClient=()=>globalThis.__churchMockDB;").replace("'./model.mjs'",JSON.stringify(new URL('../supabase/functions/youtube-feed/model.mjs',import.meta.url).href));
+await import('data:text/javascript;base64,'+Buffer.from(stripTypeScriptTypes(source)).toString('base64'));
+const channelId='UCZ8zYO9to_8PzUWwQj6xRBg';
+globalThis.fetch=async url=>{apiCalls++;if(failAPI)return {ok:false};const u=new URL(url);let payload;if(u.pathname.endsWith('/channels'))payload={items:[{snippet:{title:'Greater St. Paul'},contentDetails:{relatedPlaylists:{uploads:'UPLOADS'}}}]};else if(u.pathname.endsWith('/playlistItems'))payload={items:['aaaaaaaaaaa','bbbbbbbbbbb','ccccccccccc','deletedxxxx'].map(videoId=>({contentDetails:{videoId}}))};else if(u.pathname.endsWith('/search'))payload={items:[{id:{videoId:u.searchParams.get('eventType')==='live'?'aaaaaaaaaaa':'bbbbbbbbbbb'}}]};else payload={items:[{id:'aaaaaaaaaaa',snippet:{title:'Live service',channelId,liveBroadcastContent:'live'},liveStreamingDetails:{actualStartTime:'2026-10-15T10:00:00Z'},status:{embeddable:true}},{id:'bbbbbbbbbbb',snippet:{title:'Upcoming service',channelId,liveBroadcastContent:'upcoming'},liveStreamingDetails:{scheduledStartTime:'2030-01-01T10:00:00Z'},status:{embeddable:true}},{id:'ccccccccccc',snippet:{title:'Replay',channelId},liveStreamingDetails:{actualStartTime:'2026-10-01T10:00:00Z',actualEndTime:'2026-10-01T12:00:00Z'},status:{embeddable:false}}]};return {ok:true,json:async()=>payload};};
+const request=()=>new Request('https://example.supabase.co/functions/v1/youtube-feed');
+test('Edge feed indexes and classifies public broadcasts, stores cache and does not return secrets',async()=>{const response=await handler(request());assert.equal(response.status,200);const feed=await response.json();assert.deepEqual(feed.videos.map(v=>v.status),['live','upcoming','completed']);assert.equal(feed.videos.length,3);assert.equal(feed.archiveComplete,true);assert(!JSON.stringify(feed).includes('test-server-key'));assert(!JSON.stringify(feed).includes('test-service-key'));assert(cache.data);});
+test('Shared cache lease avoids extra YouTube requests',async()=>{claim=false;const before=apiCalls;const r=await handler(request());assert.equal(r.status,200);assert.equal(apiCalls,before);});
+test('YouTube failure keeps successful cached library and returns warning',async()=>{claim=true;failAPI=true;const r=await handler(request());assert.equal(r.status,200);assert((await r.json()).warning);failAPI=false;});
+test('Missing key is explicit, non-GET is rejected, preflight is handled',async()=>{env.YOUTUBE_API_KEY='';assert.equal((await handler(request())).status,503);assert.equal((await handler(new Request(request().url,{method:'POST'}))).status,405);assert.equal((await handler(new Request(request().url,{method:'OPTIONS'}))).status,204);});

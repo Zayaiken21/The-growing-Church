@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {videoState,normalizeVideo,sortVideos,isFresh,badge} from '../assets/js/youtube-model.js';
+test('An upcoming scheduled time in the past never implies live',()=>assert.equal(videoState({snippet:{liveBroadcastContent:'upcoming'},liveStreamingDetails:{scheduledStartTime:'2020-01-01T10:00:00Z'}}),'upcoming'));
+test('Ended broadcasts remain replays even if old metadata says live',()=>assert.equal(videoState({snippet:{liveBroadcastContent:'live'},liveStreamingDetails:{actualStartTime:'2020-01-01T10:00:00Z',actualEndTime:'2020-01-01T11:00:00Z'}}),'completed'));
+test('Reported active broadcasts are live',()=>assert.equal(videoState({snippet:{liveBroadcastContent:'live'}}),'live'));
+test('Normal uploads are excluded from broadcast indexing',()=>assert.equal(videoState({snippet:{liveBroadcastContent:'none'}}),'upload'));
+test('Videos are deduplicated and sorted live, upcoming soonest, replays newest',()=>{const out=sortVideos([{id:'aaaaaaaaaaa',status:'completed',actualStart:'2020-01-01'},{id:'bbbbbbbbbbb',status:'upcoming',scheduledStart:'2030-02-01'},{id:'ccccccccccc',status:'live'},{id:'ddddddddddd',status:'upcoming',scheduledStart:'2030-01-01'},{id:'aaaaaaaaaaa',status:'completed',actualStart:'2021-01-01'},{id:'bad id',status:'live'}]);assert.deepEqual(out.map(v=>v.id),['ccccccccccc','ddddddddddd','bbbbbbbbbbb','aaaaaaaaaaa']);});
+test('Snapshot and stale live states never get a live-now badge',()=>{assert.equal(isFresh({source:'bundled-public-channel-snapshot',fetchedAt:new Date().toISOString()}),false);assert.equal(isFresh({source:'youtube-data-api',fetchedAt:new Date(Date.now()-600000).toISOString()}),false);assert(!badge({status:'live'},false).includes('Live now'));});
+test('Embedding restrictions and YouTube title survive normalization',()=>{const v=normalizeVideo({id:'vN-0LPKgAAk',snippet:{title:'Actual church title'},status:{embeddable:false}});assert.equal(v.embeddable,false);assert.equal(v.title,'Actual church title');});

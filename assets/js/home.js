@@ -7,3 +7,5 @@ slides.forEach((s,i)=>{const dot=el('button',undefined,'dot');dot.setAttribute('
 $('#previous').onclick=()=>move(-1);$('#next').onclick=()=>move(1);
 function syncPause(){$('#pause').textContent=paused?'▶':'Ⅱ';$('#pause').setAttribute('aria-label',paused?'Play automatic slides':'Pause automatic slides');}
 $('#pause').onclick=()=>{paused=!paused;syncPause();schedule();};$('.hero').addEventListener('focusin',()=>{paused=true;syncPause();schedule();});document.addEventListener('visibilitychange',schedule);syncPause();render();schedule();
+
+const {mountYouTube}=await import('./youtube.js');await mountYouTube('#church-broadcasts',{compact:true});

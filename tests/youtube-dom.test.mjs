@@ -1,0 +1,28 @@
+import {Window} from 'happy-dom';
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const win=new Window({url:'http://localhost:8080/sermons.html'});
+Object.assign(globalThis,{window:win,document:win.document,location:win.location,localStorage:win.localStorage,matchMedia:win.matchMedia.bind(win)});
+const intervals=new Map();let counter=0;globalThis.setInterval=(fn,ms)=>{const id=++counter;intervals.set(id,{fn,ms});return id;};globalThis.clearInterval=id=>intervals.delete(id);
+const snapshot=JSON.parse(await fs.readFile(new URL('../assets/youtube-feed.json',import.meta.url),'utf8'));
+globalThis.fetch=async()=>({ok:true,json:async()=>structuredClone(snapshot)});
+win.CHURCH_CONFIG={};win.document.body.innerHTML='<main><div id="broadcasts"></div></main>';
+const {mountYouTube}=await import(new URL('../assets/js/youtube.js',import.meta.url).href);
+await mountYouTube('#broadcasts');const doc=win.document;
+assert.equal(doc.querySelectorAll('.broadcast-card').length,12);
+assert(doc.querySelector('.broadcasts').textContent.includes('Saved broadcast library'));
+const before=doc.querySelector('.broadcast-copy h3').textContent;doc.querySelector('[aria-label="Next broadcast"]').click();assert.notEqual(doc.querySelector('.broadcast-copy h3').textContent,before);
+doc.querySelector('[aria-label="Previous broadcast"]').click();assert.equal(doc.querySelector('.broadcast-copy h3').textContent,before);
+const buttons=()=>[...doc.querySelectorAll('.tabs button')];buttons().find(b=>b.textContent.startsWith('Live now')).click();assert.equal(doc.querySelectorAll('.broadcast-card').length,0);assert(doc.querySelector('.broadcast-grid').textContent.includes('No live service'));
+buttons().find(b=>b.textContent.startsWith('Replays')).click();assert.equal(doc.querySelectorAll('.broadcast-card').length,12);
+[...doc.querySelectorAll('button')].find(b=>b.textContent==='Show more broadcasts').click();assert.equal(doc.querySelectorAll('.broadcast-card').length,24);
+const search=doc.querySelector('input[type=search]');search.value='10.11.2026';search.dispatchEvent(new win.Event('input'));assert.equal(doc.querySelectorAll('.broadcast-card').length,1);assert(doc.querySelector('.broadcast-card h3').textContent.includes('10.11.2026'));
+assert.equal(doc.querySelectorAll('iframe').length,0);doc.querySelector('.broadcast-copy .btn').click();assert(doc.querySelector('dialog').open);assert(doc.querySelector('iframe').src.includes('youtube-nocookie.com/embed/vN-0LPKgAAk'));assert(![...intervals.values()].some(x=>x.ms===8000));doc.querySelector('dialog>button').click();assert.equal(doc.querySelectorAll('iframe').length,0);
+search.value='<script>alert(1)</script>';search.dispatchEvent(new win.Event('input'));assert.equal(doc.querySelectorAll('.broadcast-card').length,0);assert.equal(doc.querySelectorAll('script').length,0);
+win.dispatchEvent(new win.Event('pagehide'));assert.equal(intervals.size,0);
+// Live refresh fixture: public backend feed, fresh timestamps, title safety and playback restriction.
+win.document.body.innerHTML='<div id="fresh"></div>';win.CHURCH_CONFIG={url:'https://example.supabase.co',key:'public-test'};
+let fixture={source:'youtube-data-api',fetchedAt:new Date().toISOString(),videos:[{id:'aaaaaaaaaaa',title:'<b>Actual live title</b>',status:'live',embeddable:false},{id:'bbbbbbbbbbb',title:'Future service',status:'upcoming',scheduledStart:'2030-01-01T15:00:00Z',embeddable:true}]};
+globalThis.fetch=async()=>({ok:true,json:async()=>structuredClone(fixture)});await mountYouTube('#fresh');assert.equal(doc.querySelector('.on-air').textContent,'Live now');assert.equal(doc.querySelector('.broadcast-copy h3 b'),null);assert.equal(doc.querySelector('.broadcast-copy .btn').tagName,'A');assert(doc.querySelector('.broadcast-copy .btn').href.includes('youtube.com/watch'));
+fixture={...fixture,fetchedAt:new Date().toISOString(),videos:[{...fixture.videos[0],status:'completed',actualEnd:new Date().toISOString()}]};await [...intervals.values()].find(x=>x.ms===60000).fn();assert.equal(doc.querySelector('.on-air'),null);assert.equal(doc.querySelector('.broadcast-badge').textContent,'Watch replay');
+win.dispatchEvent(new win.Event('pagehide'));await win.happyDOM.close();console.log('PASS: archive rendering, carousel navigation, filters, search, load-more, modal open/close, pause during playback, stale labels, safe title rendering, embed fallback, live-to-replay refresh and timer cleanup.');

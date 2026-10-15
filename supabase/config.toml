@@ -1,0 +1,7 @@
+[functions.church-recovery]
+verify_jwt = false
+# Recovery is public; issue action verifies the JWT and pastor role in the function.
+
+[functions.youtube-feed]
+verify_jwt = false
+# Public GET feed. Keys and the shared cache remain server-side.
