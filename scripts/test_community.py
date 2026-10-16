@@ -12,4 +12,16 @@ class CommunityParsingTests(unittest.TestCase):
   self.assertFalse(all_day)
  def test_plain_text(self):
   self.assertEqual(text('<p>Family &amp; neighbors</p>'),'Family & neighbors')
+
+class EditorialPolicyTests(unittest.TestCase):
+ def test_withdrawn_events_cannot_be_retained(self):
+  from refresh_community import event_allowed,load_policy
+  p=load_policy();base={'category':'community','source':'NYC Parks','title':'Forest Fitness','free':True}
+  self.assertTrue(event_allowed(base,p))
+  for title in ['Halloween Hike','Movie Under the Stars','Tarot Workshop','Other Church Worship']:
+   self.assertFalse(event_allowed({**base,'title':title},p))
+ def test_other_church_rejected(self):
+  from refresh_community import event_allowed,load_policy
+  self.assertFalse(event_allowed({'category':'church','churchId':'other','title':'Worship'},load_policy()))
+
 if __name__=='__main__':unittest.main()

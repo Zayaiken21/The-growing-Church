@@ -4,11 +4,11 @@ No credentials. Text is normalized, never executed. Each source fails independen
 import concurrent.futures,datetime as dt,hashlib,html,json,re,time,urllib.parse,urllib.request,xml.etree.ElementTree as ET
 from pathlib import Path
 from zoneinfo import ZoneInfo
+import unicodedata
 ROOT=Path(__file__).resolve().parents[1]
 NY=ZoneInfo('America/New_York');NOW=dt.datetime.now(dt.timezone.utc)
 BORO={'BX':'Bronx','BK':'Brooklyn','MN':'Manhattan','NY':'Manhattan','QN':'Queens','SI':'Staten Island','M':'Manhattan','B':'Brooklyn','X':'Bronx','Q':'Queens','R':'Staten Island'}
 PARKS='https://www.nycgovparks.org/xml/events_300_rss.xml'
-RIVERSIDE='https://www.trcnyc.org/events/?ical=1&tribe_display=list'
 FOOD='https://finder.nyc.gov/foodhelp/'
 def text(x):return re.sub(r'\s+',' ',html.unescape(html.unescape(re.sub('<[^>]*>',' ',str(x or ''))))).strip()
 def get(url):
@@ -41,7 +41,7 @@ def parks_events():
   for row in rows:
    if not row.get('starttime'):continue
    start=dt.datetime.fromisoformat(row['starttime']);end=dt.datetime.fromisoformat(row['endtime']) if row.get('endtime') else start
-   values={**{k:row.get(k,'') for k in ['title','guid','description','parkids','location','categories']},'startdate':start.strftime('%Y-%m-%d'),'enddate':end.strftime('%Y-%m-%d'),'starttime':start.strftime('%I:%M %p'),'endtime':end.strftime('%I:%M %p'),'link':row.get('link',{}).get('url','')}
+   values={**{k:row.get(k,'') for k in ['title','guid','description','parkids','location','categories']},'startdate':start.strftime('%Y-%m-%d'),'enddate':end.strftime('%Y-%m-%d'),'starttime':start.strftime('%I:%M %p'),'endtime':end.strftime('%I:%M %p'),'link':row.get('link',{}).get('url',''),'registration_url':row.get('registration_url',{}).get('url','')}
    item=ET.SubElement(root,'item')
    for k,v in values.items():ET.SubElement(item,k).text=str(v or '')
   if not root.findall('.//item'):raise ValueError('No event records')
@@ -59,7 +59,7 @@ def parks_events():
   if (end or start).astimezone(dt.timezone.utc)<NOW or start>NOW+dt.timedelta(days=90):continue
   online='virtual' in (v.get('categories','')+' '+v.get('location','')).lower() or 'online' in v.get('location','').lower()
   borough=BORO.get(v.get('parkids','')[:1],'Citywide')
-  events.append({'id':'parks-'+v['guid'],'title':text(v.get('title')),'start':iso(start),'end':iso(end) if end else None,'allDay':False,'category':'community','mode':'online' if online else 'in-person','borough':'Online' if online else borough,'location':text(v.get('location')),'description':description[:1000],'free':True,'costNote':'Organizer description states this program is free. Registration may be required.','url':v.get('link','').replace('http:','https:'),'organizer':'NYC Parks / listed organizer','source':'NYC Parks','sourceUrl':source_url,'verifiedAt':iso(NOW)})
+  events.append({'id':'parks-'+v['guid'],'title':text(v.get('title')),'start':iso(start),'end':iso(end) if end else None,'allDay':False,'category':'community','mode':'online' if online else 'in-person','borough':'Online' if online else borough,'location':text(v.get('location')),'description':description,'categories':v.get('categories',''),'free':True,'costNote':'Organizer description states this program is free. Registration may be required.','url':v.get('link','').replace('http:','https:'),'registrationUrl':v.get('registration_url',''),'organizer':'NYC Parks / listed organizer','source':'NYC Parks','sourceUrl':source_url,'verifiedAt':iso(NOW)})
  if not events:raise ValueError('No upcoming, explicitly free Parks events found')
  return events
 
@@ -69,23 +69,6 @@ def ical_date(raw,key):
  zone=dt.timezone.utc if raw.endswith('Z') else ZoneInfo(re.search(r'TZID=([^;:]+)',key).group(1)) if 'TZID=' in key else NY
  return dt.datetime.strptime(raw.rstrip('Z'),'%Y%m%dT%H%M%S').replace(tzinfo=zone),False
 
-def church_events():
- s=get(RIVERSIDE).decode('utf-8-sig');s=re.sub(r'\r?\n[ \t]','',s);events=[]
- for block in s.split('BEGIN:VEVENT')[1:]:
-  fields={};keys={}
-  for line in block.split('END:VEVENT')[0].splitlines():
-   if ':' not in line:continue
-   k,v=line.split(':',1);name=k.split(';')[0];fields[name]=v;keys[name]=k
-  if 'DTSTART' not in fields or 'RRULE' in fields:continue # Never invent recurring occurrences.
-  try:start,all_day=ical_date(fields['DTSTART'],keys['DTSTART']);end=ical_date(fields['DTEND'],keys.get('DTEND',''))[0] if 'DTEND' in fields else None
-  except (ValueError,KeyError):continue
-  if (end or start).astimezone(dt.timezone.utc)<NOW or start>NOW+dt.timedelta(days=90):continue
-  title=text(ical_value(fields.get('SUMMARY','Church event')));description=text(ical_value(fields.get('DESCRIPTION','')));location=text(ical_value(fields.get('LOCATION','')));categories=fields.get('CATEGORIES','').lower()
-  online='*online' in categories or 'zoom' in location.lower() or location.lower()=='online';onsite='*onsite' in categories or (location and location.lower() not in ['online','n/a'] and 'zoom' not in location.lower())
-  mode='hybrid' if online and onsite else 'online' if online else 'in-person' if onsite else 'not-listed'
-  events.append({'id':'riverside-'+hashlib.sha256(fields.get('UID',fields.get('URL',title+iso(start))).encode()).hexdigest()[:16],'title':title,'start':iso(start),'end':iso(end) if end else None,'allDay':all_day,'category':'church','mode':mode,'borough':'Online' if mode=='online' else 'Manhattan' if onsite else 'Not listed','location':location or 'See organizer for location','description':description[:1000],'free':True if free(description) else None,'costNote':'Free, according to the organizer.' if free(description) else 'Admission cost not listed in the calendar. Check with the organizer.','url':fields.get('URL','https://www.trcnyc.org/events/'),'organizer':'The Riverside Church','source':'The Riverside Church','sourceUrl':RIVERSIDE,'verifiedAt':iso(NOW)})
- if not events:raise ValueError('No upcoming church events found')
- return events
 
 def pantries():
  config=jsonget('https://finder.nyc.gov/foodhelp/config/runtime-config.json');layers=config['appEnvironments']['finder.nyc.gov'];records={};counts=[]
@@ -116,28 +99,45 @@ def pantries():
  if not all(any(r['borough']==b and r['pantryType'] for r in rows) for b in ['Bronx','Brooklyn','Manhattan','Queens','Staten Island']):raise ValueError('Missing a borough')
  return sorted(rows,key=lambda r:(r['borough'],r['name']))
 
+def load_policy():return json.loads((ROOT/'assets/event-policy.json').read_text())
+def policy_text(value):return unicodedata.normalize('NFKC',str(value or '')).lower().translate({0x200b:None,0x200c:None,0x200d:None,0xfeff:None}).replace('_',' ').replace('/',' ')
+def event_allowed(event,policy):
+ value=policy_text(' '.join(str(event.get(k) or '') for k in ['title','description','text','location','categories','url']))
+ if any(re.search(p,value,re.I) for p in policy['blockedPatterns']):return False
+ if event.get('category')=='church':return event.get('churchId')==policy['churchId']
+ if event.get('free') is not True or event.get('source') not in policy['communitySources']:return False
+ if event.get('id') in policy['approvedCommunityIds']:return True
+ if any(re.search(p,value,re.I) for p in policy['reviewPatterns']):return False
+ return any(re.search(p,policy_text(event.get('title')),re.I) for p in policy['routineTitlePatterns'])
+def save_feeds(data):
+ # Omit closed-day scaffolding and redundant fetch stamps, not service details.
+ data['pantries']=[{k:([d for d in v if d.get('windows') or d.get('status','').lower() not in ['', 'closed']] if k=='days' else v) for k,v in row.items() if k!='verifiedAt'} for row in data['pantries']]
+ files={'community-feed.json':data,'events-feed.json':{k:v for k,v in data.items() if k!='pantries'},'pantries-feed.json':{'checkedAt':data['checkedAt'],'pantries':data['pantries'],'sources':[s for s in data['sources'] if s['name']=='NYC Food Help']}}
+ for name,payload in files.items():
+  out=ROOT/'assets'/name;temp=out.with_suffix('.tmp');temp.write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':')));temp.replace(out)
 def run():
- out=ROOT/'assets/community-feed.json'
+ out=ROOT/'assets/community-feed.json';policy=load_policy()
  old=json.loads(out.read_text()) if out.exists() else {'events':[],'pantries':[],'sources':[]}
  statuses=[];all_events=[];food=old.get('pantries',[])
- tasks={'NYC Parks':parks_events,'The Riverside Church':church_events,'NYC Food Help':pantries}
- with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:
+ tasks={'NYC Parks':parks_events,'NYC Food Help':pantries}
+ with concurrent.futures.ThreadPoolExecutor(max_workers=2) as ex:
   futures={ex.submit(fn):name for name,fn in tasks.items()}
   for future in concurrent.futures.as_completed(futures):
    name=futures[future]
    try:
     rows=future.result()
     if name=='NYC Food Help':food=rows
-    else:all_events.extend(rows)
-    statuses.append({'name':name,'ok':True,'checkedAt':iso(NOW),'updatedAt':iso(NOW),'count':len(rows)});print(name,len(rows),'records')
+    else:
+     rows=[e for e in rows if event_allowed(e,policy)];all_events.extend(rows)
+    statuses.append({'name':name,'ok':True,'checkedAt':iso(NOW),'updatedAt':iso(NOW),'count':len(rows)});print(name,len(rows),'published listings')
    except Exception as e:
     previous=next((s for s in old.get('sources',[]) if s['name']==name),{})
-    statuses.append({'name':name,'ok':False,'checkedAt':iso(NOW),'updatedAt':previous.get('updatedAt'),'count':previous.get('count',0),'message':'Source unavailable; retaining previous listings.'})
-    if name!='NYC Food Help':all_events.extend(e for e in old.get('events',[]) if e.get('source')==name)
-    print(name,'unavailable:',type(e).__name__,str(e)[:120])
- events={e['id']:e for e in all_events if dt.datetime.fromisoformat(e['end'] or e['start'])>=NOW}
- if not food or not events:raise RuntimeError('Refusing to publish an empty initial directory')
- data={'checkedAt':iso(NOW),'timezone':'America/New_York','refreshHours':6,'sources':statuses,'events':sorted(events.values(),key=lambda x:x['start']),'pantries':food}
- tmp=out.with_suffix('.tmp');tmp.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':')));tmp.replace(out)
- print('Published feed:',len(events),'events;',len(food),'food programs')
+    retained=[e for e in old.get('events',[]) if e.get('source')==name and event_allowed(e,policy)]
+    statuses.append({'name':name,'ok':False,'checkedAt':iso(NOW),'updatedAt':previous.get('updatedAt'),'count':len(food) if name=='NYC Food Help' else len(retained),'message':'Source unavailable; retaining policy-screened previous listings.'})
+    all_events.extend(retained);print(name,'unavailable:',type(e).__name__)
+ # Re-screen retained records too: an outage must never restore withdrawn content.
+ events={e['id']:e for e in all_events if event_allowed(e,policy) and dt.datetime.fromisoformat(e['end'] or e['start'])>=NOW}
+ if not food:raise RuntimeError('Refusing to replace a valid food directory with an empty one')
+ data={'checkedAt':iso(NOW),'timezone':'America/New_York','policyVersion':policy['version'],'pantryCount':sum(bool(p['pantryType']) for p in food),'refreshHours':6,'sources':statuses,'events':sorted(events.values(),key=lambda x:x['start']),'pantries':food}
+ save_feeds(data);print('Published:',len(events),'screened free community events;',data['pantryCount'],'pantries')
 if __name__=='__main__':run()

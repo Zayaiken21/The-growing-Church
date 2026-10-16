@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "churchId": "greater-st-paul",
+  "churchName": "Greater St. Paul",
+  "communitySources": ["NYC Parks"],
+  "approvedCommunityIds": [],
+  "blockedPatterns": [
+    "hallowe+['’ -]?n|hallowe?en|hallow.?scream|samhain|trick[ -]?or[ -]?treat|trunk[ -]?or[ -]?treat",
+    "\\bpagan(?:ism)?\\b|\\bwicca\\w*|\\bwitch(?:es|craft|ing)?\\b|\\boccult\\b|\\bspell(?:s|casting)?\\b|\\bsorcery\\b",
+    "\\btarot\\b|\\bouija\\b|\\bseance\\b|\\bs[eé]ance\\b|\\bdivination\\b|\\bpsychic\\b|\\bastrology\\b|\\bzodiac\\b|\\bhoroscope\\b",
+    "\\bhaunt(?:ed|ing)?\\b|\\bfright\\b|\\bhorror\\b|hocus[ -]?pocus|\\bghost\\w*|\\bdemon\\w*|\\bsatan\\w*|\\bdevil\\w*|\\bvampire\\w*|\\bzombie\\w*",
+    "\\breiki\\b|\\bchakra\\w*|\\byoga\\b|\\bkundalini\\b|\\bnew[ -]?age\\b|\\bcrystal[ -]?healing\\b|spirit[ -]?(?:channel|contact)|ancestor[ -]?(?:worship|ritual)|\\bmanifestation\\b",
+    "\\bsolstice\\b|\\bequinox[ -]?(?:ritual|celebration)|day of the dead|dia de los muertos|d[ií]a de los muertos",
+    "\\bdrunken\\b|\\bpub crawl\\b|\\bbar crawl\\b|\\bgambling\\b|\\bcannabis\\b|\\berotic\\w*|\\badults[ -]?only\\b"
+  ],
+  "reviewPatterns": ["\\bmovie\\w*|\\bfilm\\w*|\\bcinema\\b|\\bcostume\\w*|\\bfestival\\w*|\\bparade\\w*|\\bmeditation\\b|\\britual\\w*|\\bspiritual\\w*"],
+  "routineTitlePatterns": [
+    "\\bfitness\\b|\\bwalking\\b|\\bwalk\\b|\\bhik(?:e|ing)\\b|\\bnyrr\\b|\\bopen run\\b|\\bbirding\\b|\\bbird walk\\b",
+    "\\bgarden\\w*|\\bplanting\\b|\\btree stewardship\\b|\\bnature exploration\\b|\\bwildlife watch\\b|\\bfishing\\b|\\bkayak\\w*|\\browing\\b",
+    "\\bvolunteer\\w*|\\bclean[ -]?up\\b|\\bcommunity service\\b|\\bfood (?:pantry|distribution|drive)\\b",
+    "\\bcareer\\b|\\bresume\\b|\\brésumé\\b|\\bjob\\w*|\\bliteracy\\b|\\btutoring\\b|\\bhomework\\b|\\besl\\b|\\bcitizenship\\b|\\bcomputer\\w*|\\bcoding\\b",
+    "\\bnutrition\\b|\\bhealth screening\\b|\\bbasketball\\b|\\bpickleball\\b|\\btennis\\b|\\bsoccer\\b|\\bswimming\\b|\\bchess\\b"
+  ]
+}

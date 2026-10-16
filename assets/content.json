@@ -2,9 +2,9 @@
   "settings": {
     "name": "Greater St. Paul",
     "tagline": "A place to belong. A faith to grow.",
-    "service": "Sundays \u00b7 10:00 AM",
-    "address": "Add your church address",
-    "email": "hello@example.com",
+    "service": "Service times \u00b7 see church announcements",
+    "address": "Location details will be confirmed by the church.",
+    "email": "",
     "givingUrl": "",
     "livestreamUrl": "https://www.youtube.com/@GreaterStPaulHDIWC/live"
   },
