@@ -10,7 +10,8 @@ Events page: https://zayaiken21.github.io/The-growing-Church/events.html
 - The homepage has one quiet invitation to Watch. The broadcast library is only on Watch, rather than repeated across multiple pages.
 
 ## Sources
-- NYC Parks' official rolling public events XML: https://www.nycgovparks.org/xml/events_300_rss.xml
+- NYC Parks' official rolling 14-day Open Data feed: https://data.cityofnewyork.us/resource/w3wp-dpdi.json
+- NYC Parks' official public XML fallback: https://www.nycgovparks.org/xml/events_300_rss.xml
 - Riverside Church's public organizer calendar: https://www.trcnyc.org/events/?ical=1&tribe_display=list
 - NYC Food Help's official public production map layers, discovered via https://finder.nyc.gov/foodhelp/config/runtime-config.json
 

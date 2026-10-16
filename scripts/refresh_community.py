@@ -28,7 +28,26 @@ def free(textvalue):
  s=text(textvalue).lower()
  return bool(re.search(r'\b(?:free (?:and open|admission|event|class|program|workshop|concert|guided|weekly|5k)|free,? (?:year-round|[0-9]+k)|at no cost|no admission (?:fee|charge)|admission is free)\b',s))
 def parks_events():
- root=ET.fromstring(get(PARKS));events=[]
+ source_url='https://data.cityofnewyork.us/City-Government/NYC-Parks-Public-Events-Upcoming-14-Days/w3wp-dpdi'
+ try:
+  rows=[];offset=0
+  while True:
+   batch=jsonget('https://data.cityofnewyork.us/resource/w3wp-dpdi.json?'+urllib.parse.urlencode({'$limit':1000,'$offset':offset}))
+   rows.extend(batch)
+   if len(batch)<1000:break
+   offset+=len(batch)
+   if offset>20000:raise ValueError('Event pagination incomplete')
+  root=ET.Element('rss')
+  for row in rows:
+   if not row.get('starttime'):continue
+   start=dt.datetime.fromisoformat(row['starttime']);end=dt.datetime.fromisoformat(row['endtime']) if row.get('endtime') else start
+   values={**{k:row.get(k,'') for k in ['title','guid','description','parkids','location','categories']},'startdate':start.strftime('%Y-%m-%d'),'enddate':end.strftime('%Y-%m-%d'),'starttime':start.strftime('%I:%M %p'),'endtime':end.strftime('%I:%M %p'),'link':row.get('link',{}).get('url','')}
+   item=ET.SubElement(root,'item')
+   for k,v in values.items():ET.SubElement(item,k).text=str(v or '')
+  if not root.findall('.//item'):raise ValueError('No event records')
+ except Exception:
+  root=ET.fromstring(get(PARKS));source_url=PARKS
+ events=[]
  for item in root.findall('.//item'):
   v={c.tag.split('}')[-1]:(c.text or '') for c in item};description=text(v.get('description'))
   if not free(description):continue
@@ -40,7 +59,7 @@ def parks_events():
   if (end or start).astimezone(dt.timezone.utc)<NOW or start>NOW+dt.timedelta(days=90):continue
   online='virtual' in (v.get('categories','')+' '+v.get('location','')).lower() or 'online' in v.get('location','').lower()
   borough=BORO.get(v.get('parkids','')[:1],'Citywide')
-  events.append({'id':'parks-'+v['guid'],'title':text(v.get('title')),'start':iso(start),'end':iso(end) if end else None,'allDay':False,'category':'community','mode':'online' if online else 'in-person','borough':'Online' if online else borough,'location':text(v.get('location')),'description':description[:1000],'free':True,'costNote':'Organizer description states this program is free. Registration may be required.','url':v.get('link','').replace('http:','https:'),'organizer':'NYC Parks / listed organizer','source':'NYC Parks','sourceUrl':PARKS,'verifiedAt':iso(NOW)})
+  events.append({'id':'parks-'+v['guid'],'title':text(v.get('title')),'start':iso(start),'end':iso(end) if end else None,'allDay':False,'category':'community','mode':'online' if online else 'in-person','borough':'Online' if online else borough,'location':text(v.get('location')),'description':description[:1000],'free':True,'costNote':'Organizer description states this program is free. Registration may be required.','url':v.get('link','').replace('http:','https:'),'organizer':'NYC Parks / listed organizer','source':'NYC Parks','sourceUrl':source_url,'verifiedAt':iso(NOW)})
  if not events:raise ValueError('No upcoming, explicitly free Parks events found')
  return events
 
