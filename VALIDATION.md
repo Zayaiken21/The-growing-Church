@@ -25,3 +25,5 @@ Run local model/backend/DOM tests with Node 24:
 Read LIVESTREAM_SETUP.md for activation and post-deployment checks. Automatic status tracking is implemented but is not active merely by uploading static HTML without the backend setup.
 
 Purple/gold brand revision: Chromium checks repeated successfully across all 27 page/viewport combinations; church name, favicon, theme color and local artwork updated.
+
+Community directory revision: 9 model tests and 3 Python parser tests passed; 27 Chromium page/viewport checks passed with no JavaScript errors or horizontal overflow. Exercised all five borough filters, calendar navigation, free/online sections, pantry pagination and search/reset. Initial live source import: 158 future events and 694 food-assistance programs, including 659 pantries. Workflow activation and deployed feed checks are verified separately after publishing.

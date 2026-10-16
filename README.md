@@ -90,3 +90,6 @@ Official reference documentation:
 ## Greater St. Paul livestream update
 
 See **LIVESTREAM_SETUP.md** first for the YouTube integration. Home and Sermons now include the real Greater St. Paul broadcast archive, sliding featured services, status filters, search, and modal playback. The manual sermon cards have been replaced by this church-specific library; manual sermon content remains in the existing content record for backward compatibility but is no longer rendered on Sermons. Original login and recovery functions are preserved. Existing configured projects must keep their config.js and run only youtube-migration.sql for this update. Supabase cloud settings continue to override the sample defaults.
+
+## Community directory update
+See COMMUNITY_DIRECTORY.md for the automatic event and food-help imports, source coverage, filters and update policy. Public directory updates need no Supabase or third-party API key. The homepage now links to the dedicated Watch page rather than repeating the broadcast library.

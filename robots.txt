@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zayaiken21.github.io/The-growing-Church/sitemap.xml
