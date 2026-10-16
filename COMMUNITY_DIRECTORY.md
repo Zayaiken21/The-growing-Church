@@ -45,3 +45,7 @@ Retained fallback data is screened again on every refresh. Missing or invalid po
 `events-feed.json` is small and loads first. `pantries-feed.json` is loaded only when the food-help tab is opened. The combined file remains policy-screened for older visitors. The scheduled workflow commits all three files.
 
 The View details button opens an accessible on-site dialog with the imported event details, so reading the event does not depend on an external site. Official source and registration links are clearly labeled; remote availability remains under the organizer’s control.
+
+
+## October 16 update
+Helping Hands (`helping-hands.html`) hosts the pantry and community-kitchen directory independently of Events. Home restores a Services section without inventing service times. Policy v2 allows neutral free arts, music, festivals and other supported activities after explicit-theme screening; ambiguous film and spiritual listings remain review-gated. Food assistance is independent of event screening.

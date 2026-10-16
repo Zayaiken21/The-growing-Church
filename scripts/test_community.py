@@ -18,7 +18,7 @@ class EditorialPolicyTests(unittest.TestCase):
   from refresh_community import event_allowed,load_policy
   p=load_policy();base={'category':'community','source':'NYC Parks','title':'Forest Fitness','free':True}
   self.assertTrue(event_allowed(base,p))
-  for title in ['Halloween Hike','Movie Under the Stars','Tarot Workshop','Other Church Worship']:
+  for title in ['Halloween Hike','Movie Under the Stars','Tarot Workshop']:
    self.assertFalse(event_allowed({**base,'title':title},p))
  def test_other_church_rejected(self):
   from refresh_community import event_allowed,load_policy

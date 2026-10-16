@@ -108,7 +108,7 @@ def event_allowed(event,policy):
  if event.get('free') is not True or event.get('source') not in policy['communitySources']:return False
  if event.get('id') in policy['approvedCommunityIds']:return True
  if any(re.search(p,value,re.I) for p in policy['reviewPatterns']):return False
- return any(re.search(p,policy_text(event.get('title')),re.I) for p in policy['routineTitlePatterns'])
+ return policy.get('communityMode')=='screened' or any(re.search(p,policy_text(event.get('title')),re.I) for p in policy['routineTitlePatterns'])
 def save_feeds(data):
  # Omit closed-day scaffolding and redundant fetch stamps, not service details.
  data['pantries']=[{k:([d for d in v if d.get('windows') or d.get('status','').lower() not in ['', 'closed']] if k=='days' else v) for k,v in row.items() if k!='verifiedAt'} for row in data['pantries']]

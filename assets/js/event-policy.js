@@ -10,6 +10,6 @@ export function eventAllowed(event,policy){
   if(policy.approvedCommunityIds.includes(event.id))return true;
   if(policy.reviewPatterns.some(p=>new RegExp(p,'iu').test(text)))return false;
   const title=normalizePolicyText(event.title);
-  return policy.routineTitlePatterns.some(p=>new RegExp(p,'iu').test(title));
+  return policy.communityMode==='screened'||policy.routineTitlePatterns.some(p=>new RegExp(p,'iu').test(title));
  }catch{return false;}
 }
