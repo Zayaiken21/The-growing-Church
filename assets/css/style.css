@@ -5,3 +5,6 @@
 @media(max-width:1050px){header .nav{position:relative}header nav{top:100%;left:0;right:0}}
 
 .home-services .card{padding:28px;border:1px solid #e5dcee;border-radius:18px;background:white}.home-services .card h3{font-size:1.6rem}.home-services .card .btn{margin-top:12px}
+
+/* Keep the church address prominent and clearly interactive everywhere. */
+a[data-directions]{display:inline-block;font-weight:700;font-size:1rem;line-height:1.6;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;overflow-wrap:anywhere;padding:6px 0;min-height:44px}footer a[data-directions]{color:#f4d88f;font-size:1rem}a[data-directions]:hover{text-decoration-thickness:3px}a[data-directions]:focus-visible{outline:3px solid var(--gold);outline-offset:5px;border-radius:3px}
