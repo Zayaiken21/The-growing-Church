@@ -2,8 +2,8 @@
   "settings": {
     "name": "Greater St. Paul",
     "tagline": "A place to belong. A faith to grow.",
-    "service": "Service times \u00b7 see church announcements",
-    "address": "Location details will be confirmed by the church.",
+    "service": "Service times · see church announcements",
+    "address": "44 Rockaway Avenue, Brooklyn, NY",
     "email": "",
     "givingUrl": "",
     "livestreamUrl": "https://www.youtube.com/@GreaterStPaulHDIWC/live"
@@ -55,13 +55,13 @@
     {
       "title": "A hope that holds",
       "text": "Discover a faith that stays with you through ordinary days and difficult seasons.",
-      "detail": "Featured message \u00b7 Add your speaker and date",
+      "detail": "Featured message · Add your speaker and date",
       "url": ""
     },
     {
       "title": "Room at the table",
       "text": "What it means to welcome, belong, and love the people around us.",
-      "detail": "Community series \u00b7 Add your speaker and date",
+      "detail": "Community series · Add your speaker and date",
       "url": ""
     }
   ],
@@ -69,7 +69,7 @@
     {
       "title": "Sunday gathering",
       "text": "Gather for worship, teaching, and connection. Everyone is welcome.",
-      "detail": "Sundays \u00b7 10:00 AM"
+      "detail": "Sundays · 10:00 AM"
     },
     {
       "title": "Community table",
