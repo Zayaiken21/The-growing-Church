@@ -2,9 +2,9 @@
   "channelId": "UCZ8zYO9to_8PzUWwQj6xRBg",
   "channelName": "Greater St. Paul",
   "channelUrl": "https://www.youtube.com/@GreaterStPaulHDIWC",
-  "fetchedAt": "2026-10-15T22:30:07.636289+00:00",
-  "source": "bundled-public-channel-snapshot",
-  "archiveComplete": true,
+  "fetchedAt": "2026-10-18T16:42:58.269972+00:00",
+  "source": "public-channel-refresh",
+  "archiveComplete": false,
   "videos": [
     {
       "id": "vN-0LPKgAAk",
@@ -15,7 +15,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "117 Streamed 4d ago"
+      "listingDetail": "120 Streamed 6d ago"
     },
     {
       "id": "Rj5HjelA3Io",
@@ -26,7 +26,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "128 Streamed 11d ago"
+      "listingDetail": "130 Streamed 13d ago"
     },
     {
       "id": "xexVNixyppg",
@@ -48,7 +48,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "113 Streamed 2w ago"
+      "listingDetail": "114 Streamed 2w ago"
     },
     {
       "id": "ZeeORtSa-W8",
@@ -70,7 +70,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "157 Streamed 2w ago"
+      "listingDetail": "159 Streamed 2w ago"
     },
     {
       "id": "H4jiaGqRSDI",
@@ -213,7 +213,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "92 Streamed 1mo ago"
+      "listingDetail": "92 Streamed 2mo ago"
     },
     {
       "id": "fXjf345UJ4U",
@@ -224,7 +224,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "27 Streamed 1mo ago"
+      "listingDetail": "27 Streamed 2mo ago"
     },
     {
       "id": "z2ddeEfliMk",
@@ -301,7 +301,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "85 Streamed 2mo ago"
+      "listingDetail": "85 Streamed 3mo ago"
     },
     {
       "id": "B5dUyKpt964",
@@ -312,7 +312,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "13 Streamed 2mo ago"
+      "listingDetail": "13 Streamed 3mo ago"
     },
     {
       "id": "cVcy2MVVLHQ",
