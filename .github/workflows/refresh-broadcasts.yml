@@ -1,0 +1,35 @@
+name: Refresh church broadcasts
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/refresh_broadcasts.py'
+      - '.github/workflows/refresh-broadcasts.yml'
+permissions:
+  contents: write
+concurrency:
+  group: church-broadcast-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read public church channel
+        run: python scripts/refresh_broadcasts.py
+      - name: Save latest broadcast listing
+        run: |
+          git add assets/youtube-feed.json
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Refresh public church broadcasts"
+          git pull --rebase origin main
+          git push origin HEAD:main

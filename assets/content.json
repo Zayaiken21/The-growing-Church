@@ -10,28 +10,34 @@
   },
   "slides": [
     {
-      "eyebrow": "WELCOME HOME",
-      "title": "There is a place\nfor you here.",
-      "text": "Come as you are. Find community, discover Jesus, and take your next step with people who care.",
+      "eyebrow": "GREATER ST. PAUL · BROOKLYN",
+      "title": "Come worship\nwith us.",
+      "text": "Join Greater St. Paul at 44 Rockaway Avenue, Brooklyn, NY. Take a look inside through our church’s own service broadcasts.",
       "button": "Plan your visit",
       "link": "visit.html",
-      "image": ""
+      "image": "assets/photos/church-worship.jpg",
+      "alt": "Congregation gathered during a Greater St. Paul service",
+      "source": "https://www.youtube.com/watch?v=Rj5HjelA3Io"
     },
     {
-      "eyebrow": "FAITH FOR EVERYDAY LIFE",
-      "title": "Grow in faith.\nWalk together.",
-      "text": "Meaningful worship. Honest conversations. A community that brings hope into the everyday.",
-      "button": "Explore our ministries",
-      "link": "ministries.html",
-      "image": ""
+      "eyebrow": "OUR CHURCH. OUR COMMUNITY.",
+      "title": "Faith shared.\nTogether.",
+      "text": "See our sanctuary and congregation in a service from Greater St. Paul’s YouTube channel.",
+      "button": "Watch this service",
+      "link": "https://www.youtube.com/watch?v=ThG85YcVa2k",
+      "image": "assets/photos/church-sanctuary.jpg",
+      "alt": "Worship gathering inside Greater St. Paul’s sanctuary",
+      "source": "https://www.youtube.com/watch?v=ThG85YcVa2k"
     },
     {
-      "eyebrow": "LOVE IN ACTION",
-      "title": "Small acts.\nLasting hope.",
-      "text": "Use your gifts to serve your neighbors and help make our community a little brighter.",
-      "button": "Find your next step",
-      "link": "events.html",
-      "image": ""
+      "eyebrow": "GATHER IN FAITH",
+      "title": "A place to pray.\nA place to belong.",
+      "text": "Explore the church’s services and pastoral celebrations, or visit us in Brooklyn.",
+      "button": "Watch this celebration",
+      "link": "https://www.youtube.com/watch?v=ZeeORtSa-W8",
+      "image": "assets/photos/church-gathering.jpg",
+      "alt": "Congregation and speakers during a Greater St. Paul pastoral celebration",
+      "source": "https://www.youtube.com/watch?v=ZeeORtSa-W8"
     }
   ],
   "ministries": [

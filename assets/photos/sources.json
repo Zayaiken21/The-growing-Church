@@ -1,0 +1,21 @@
+{
+  "photos": [
+    {
+      "file": "assets/photos/church-worship.jpg",
+      "source": "https://www.youtube.com/watch?v=Rj5HjelA3Io",
+      "kind": "Unmodified public service thumbnail"
+    },
+    {
+      "file": "assets/photos/church-sanctuary.jpg",
+      "source": "https://www.youtube.com/watch?v=ThG85YcVa2k",
+      "kind": "Unmodified public service thumbnail"
+    },
+    {
+      "file": "assets/photos/church-gathering.jpg",
+      "source": "https://www.youtube.com/watch?v=ZeeORtSa-W8",
+      "kind": "Unmodified public service thumbnail"
+    }
+  ],
+  "instagram": "https://www.instagram.com/greaterstpaul_44rockaway/",
+  "note": "Instagram posts were not publicly exposed during this update. Photos come from the church’s YouTube broadcasts; no generated or stock church imagery."
+}
