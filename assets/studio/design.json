@@ -115,10 +115,29 @@
     "about.html": {
       "label": "About",
       "custom": false,
-      "edits": {},
+      "edits": {
+        "s23": {
+          "text": "For more than 50 years, Greater St. Paul has shared the love of Jesus through worship, fellowship, and service to our neighbors."
+        },
+        "s29": {
+          "text": "OUR STORY · OUR COMMUNITY"
+        },
+        "s30": {
+          "text": "Deep roots. A giving heart."
+        },
+        "s31": {
+          "text": "Greater St. Paul has been a church family for more than 50 years. Our congregation has worshipped in different locations throughout that journey, and for about 20 years we have called 44 Rockaway Avenue in Brooklyn home. Through every move, our commitment to faith and community has continued."
+        },
+        "s32": {
+          "text": "Our church has been a source of care and support for the community, helping people in need through giving and donations. Our service also reaches beyond our neighborhood through missionary trips. Together, we raise funds for events that bring families and neighbors together, sharing what we have and putting our faith into action."
+        }
+      },
       "blocks": [],
       "order": [],
-      "seo": {}
+      "seo": {
+        "title": "Our history & community · Greater St. Paul",
+        "description": "Discover Greater St. Paul’s more than 50 years of faith, missionary work and community service, including about 20 years at 44 Rockaway Avenue in Brooklyn."
+      }
     },
     "ministries.html": {
       "label": "Ministries",
