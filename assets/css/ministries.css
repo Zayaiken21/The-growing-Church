@@ -1,0 +1,15 @@
+/* Church photography blended into the Ministries page's purple and gold palette. */
+.ministries-welcome{position:relative;isolation:isolate;background:#301143 url('../photos/sanctuary-ministries.jpeg') center 48%/cover no-repeat}
+.ministries-welcome::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(32,12,48,.85),rgba(48,17,67,.64),rgba(48,17,67,.4))}
+.ministries-welcome::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(to top,var(--paper),rgba(251,248,241,.4) 8%,transparent 27%)}
+.ministries-welcome .pagehero{position:relative;min-height:550px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:78px 0 120px;border:0}
+.ministries-welcome .eyebrow{color:#f4d88f;font-weight:700;letter-spacing:.22em}
+.ministries-welcome h1{color:#fffaf0;text-shadow:0 2px 24px #180a2855;margin-bottom:24px}
+.ministries-welcome .pagehero>p:not(.eyebrow){color:#fff8eb;max-width:560px;font-size:1.05rem}
+.ministries-welcome .ministries-explore{margin-top:26px}
+.ministries-page #ministries{scroll-margin-top:24px}
+.ministries-page>.container.section{padding-top:36px}
+.ministries-page .card{border-top:3px solid var(--gold);box-shadow:0 10px 32px rgba(48,17,67,.04)}
+.ministries-page .card .number{margin-bottom:22px}
+.ministries-page .cta{border:1px solid #e1d2e9}
+@media(max-width:760px){.ministries-welcome{background-position:54% center}.ministries-welcome::before{background:linear-gradient(rgba(32,12,48,.75),rgba(48,17,67,.73))}.ministries-welcome .pagehero{min-height:510px;padding:60px 0 100px}.ministries-welcome h1{font-size:clamp(2.7rem,10vw,4rem)}.ministries-welcome .pagehero>p:not(.eyebrow){font-size:1rem}.ministries-page>.container.section{padding-top:26px}}
