@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /The-growing-Church/assets/studio/templates/
+Disallow: /The-growing-Church/assets/studio/page-template.html
 Sitemap: https://zayaiken21.github.io/The-growing-Church/sitemap.xml

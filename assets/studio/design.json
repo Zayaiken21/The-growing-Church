@@ -1,0 +1,211 @@
+{
+  "version": 1,
+  "theme": {},
+  "content": {
+    "settings": {
+      "name": "Greater St. Paul",
+      "tagline": "A place to belong. A faith to grow.",
+      "service": "Sundays · 12:30–2:30 PM ET",
+      "address": "44 Rockaway Avenue, Brooklyn, NY",
+      "email": "",
+      "givingUrl": "",
+      "livestreamUrl": "https://www.youtube.com/@GreaterStPaulHDIWC/live"
+    },
+    "slides": [
+      {
+        "eyebrow": "GREATER ST. PAUL · BROOKLYN",
+        "title": "Come worship\nwith us.",
+        "text": "Join Greater St. Paul at 44 Rockaway Avenue, Brooklyn, NY. Take a look inside through our church’s own service broadcasts.",
+        "button": "Plan your visit",
+        "link": "visit.html",
+        "image": "assets/photos/church-worship.jpg",
+        "alt": "Congregation gathered during a Greater St. Paul service",
+        "source": "https://www.youtube.com/watch?v=Rj5HjelA3Io"
+      },
+      {
+        "eyebrow": "OUR CHURCH. OUR COMMUNITY.",
+        "title": "Faith shared.\nTogether.",
+        "text": "See our sanctuary and congregation in a service from Greater St. Paul’s YouTube channel.",
+        "button": "Watch this service",
+        "link": "https://www.youtube.com/watch?v=ThG85YcVa2k",
+        "image": "assets/photos/church-sanctuary.jpg",
+        "alt": "Worship gathering inside Greater St. Paul’s sanctuary",
+        "source": "https://www.youtube.com/watch?v=ThG85YcVa2k"
+      },
+      {
+        "eyebrow": "GATHER IN FAITH",
+        "title": "A place to pray.\nA place to belong.",
+        "text": "Explore the church’s services and pastoral celebrations, or visit us in Brooklyn.",
+        "button": "Watch this celebration",
+        "link": "https://www.youtube.com/watch?v=ZeeORtSa-W8",
+        "image": "assets/photos/church-gathering.jpg",
+        "alt": "Congregation and speakers during a Greater St. Paul pastoral celebration",
+        "source": "https://www.youtube.com/watch?v=ZeeORtSa-W8"
+      }
+    ],
+    "ministries": [
+      {
+        "title": "Tuesday Bible Study",
+        "text": "Come together to explore Scripture, ask questions, and grow in faith.",
+        "detail": "Every Tuesday · Contact the church for the meeting time."
+      },
+      {
+        "title": "Youth Chat",
+        "text": "A space for young people to talk about their feelings, share what’s on their hearts, and connect with one another.",
+        "detail": "One Sunday each month · Check church announcements for the next date and time."
+      },
+      {
+        "title": "Kids & families",
+        "text": "A welcoming space for little ones to discover faith, and families to build friendships.",
+        "detail": "Ask us about age groups and check-in."
+      },
+      {
+        "title": "Groups & connection",
+        "text": "Life is better together. Share a meal, explore Scripture, and build meaningful friendships.",
+        "detail": "Contact us to find a group."
+      },
+      {
+        "title": "Serve our neighbors",
+        "text": "Put love into action through practical care and local outreach.",
+        "detail": "Ask about current volunteer opportunities."
+      }
+    ],
+    "sermons": [
+      {
+        "title": "A hope that holds",
+        "text": "Discover a faith that stays with you through ordinary days and difficult seasons.",
+        "detail": "Featured message · Add your speaker and date",
+        "url": ""
+      },
+      {
+        "title": "Room at the table",
+        "text": "What it means to welcome, belong, and love the people around us.",
+        "detail": "Community series · Add your speaker and date",
+        "url": ""
+      }
+    ],
+    "events": [
+      {
+        "id": "fall-festival-2026",
+        "title": "Annual Community Outreach Fall Festival",
+        "category": "church",
+        "churchId": "greater-st-paul",
+        "start": "2026-10-24T12:00:00-04:00",
+        "end": "2026-10-24T15:00:00-04:00",
+        "mode": "in-person",
+        "borough": "Brooklyn",
+        "location": "44 Rockaway Avenue, Brooklyn, NY 11233",
+        "text": "Greater St. Paul’s annual Community Outreach Fall Festival. Saturday, October 24, 2026, 12–3 PM. Family activities include a gaming truck, hot dogs, chips, popcorn and group games. The church flyer invites guests to wear a creative costume. Admission cost is not specified on the flyer; confirm with the church.",
+        "url": "https://zayaiken21.github.io/The-growing-Church/events.html#fall-festival-2026",
+        "image": "assets/photos/fall-festival-2026.jpeg",
+        "free": false,
+        "costNote": "Admission cost is not specified on the church flyer."
+      }
+    ]
+  },
+  "pages": {
+    "index.html": {
+      "label": "Home",
+      "custom": false,
+      "edits": {},
+      "blocks": [],
+      "order": [],
+      "seo": {}
+    },
+    "about.html": {
+      "label": "About",
+      "custom": false,
+      "edits": {},
+      "blocks": [],
+      "order": [],
+      "seo": {}
+    },
+    "ministries.html": {
+      "label": "Ministries",
+      "custom": false,
+      "edits": {},
+      "blocks": [],
+      "order": [],
+      "seo": {}
+    },
+    "sermons.html": {
+      "label": "Watch",
+      "custom": false,
+      "edits": {},
+      "blocks": [],
+      "order": [],
+      "seo": {}
+    },
+    "events.html": {
+      "label": "Events",
+      "custom": false,
+      "edits": {},
+      "blocks": [],
+      "order": [],
+      "seo": {}
+    },
+    "helping-hands.html": {
+      "label": "Helping Hands",
+      "custom": false,
+      "edits": {},
+      "blocks": [],
+      "order": [],
+      "seo": {}
+    },
+    "visit.html": {
+      "label": "Plan a visit",
+      "custom": false,
+      "edits": {},
+      "blocks": [],
+      "order": [],
+      "seo": {}
+    },
+    "give.html": {
+      "label": "Give",
+      "custom": false,
+      "edits": {},
+      "blocks": [],
+      "order": [],
+      "seo": {}
+    },
+    "privacy.html": {
+      "label": "Privacy",
+      "custom": false,
+      "edits": {},
+      "blocks": [],
+      "order": [],
+      "seo": {}
+    }
+  },
+  "navigation": [
+    {
+      "label": "Home",
+      "url": "index.html"
+    },
+    {
+      "label": "About",
+      "url": "about.html"
+    },
+    {
+      "label": "Ministries",
+      "url": "ministries.html"
+    },
+    {
+      "label": "Watch",
+      "url": "sermons.html"
+    },
+    {
+      "label": "Events",
+      "url": "events.html"
+    },
+    {
+      "label": "Helping Hands",
+      "url": "helping-hands.html"
+    },
+    {
+      "label": "Plan a visit",
+      "url": "visit.html",
+      "button": true
+    }
+  ]
+}
