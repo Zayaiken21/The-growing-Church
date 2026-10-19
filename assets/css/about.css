@@ -1,0 +1,10 @@
+/* About Greater St. Paul: the church's own photograph and confirmed visit details. */
+.about-welcome{position:relative;background:#301143 url('../photos/sanctuary-about.jpeg') center 46%/cover no-repeat;color:#fff8eb}
+.about-welcome::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(32,12,48,.92),rgba(48,17,67,.68) 55%,rgba(48,17,67,.22))}
+.about-copy{position:relative;padding:92px 0 100px;min-height:550px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.about-copy .eyebrow{color:#f4d88f}.about-copy h1{max-width:800px;margin-bottom:25px;text-shadow:0 2px 24px #180a2866}
+.about-copy>p:not(.eyebrow){max-width:560px;color:#fff8eb;font-size:1.08rem}
+.about-actions{display:flex;align-items:center;flex-wrap:wrap;gap:24px;margin-top:10px}.about-watch{color:#f4d88f;font-weight:700;text-underline-offset:5px;padding:12px 0}
+.about-story{display:grid;grid-template-columns:1.1fr 1fr;gap:70px;align-items:center}.about-story>div>p:not(.eyebrow){color:var(--muted);max-width:620px}.about-story h2{margin-bottom:24px}
+.about-gather{border:1px solid #dfc88d;border-top:4px solid var(--gold);border-radius:12px;background:#f1eaf5;padding:38px}.about-service{color:var(--green);font-weight:700;font-size:1.1rem}.about-gather a{color:var(--green)}
+@media(max-width:760px){.about-welcome{background-position:46% center}.about-welcome::before{background:linear-gradient(rgba(32,12,48,.76),rgba(48,17,67,.83))}.about-copy{padding:64px 0;min-height:510px}.about-copy h1{font-size:clamp(2.8rem,10vw,4rem)}.about-copy>p:not(.eyebrow){font-size:1rem}.about-story{grid-template-columns:1fr;gap:32px}.about-gather{padding:28px}.about-actions{gap:18px}}
