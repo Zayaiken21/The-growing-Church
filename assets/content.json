@@ -73,19 +73,20 @@
   ],
   "events": [
     {
-      "title": "Sunday gathering",
-      "text": "Gather for worship, teaching, and connection. Everyone is welcome.",
-      "detail": "Sundays · 10:00 AM"
-    },
-    {
-      "title": "Community table",
-      "text": "Meet your neighbors and share a meal together.",
-      "detail": "Date to be announced"
-    },
-    {
-      "title": "Serve together",
-      "text": "Join a practical project that supports our local community.",
-      "detail": "Date to be announced"
+      "id": "fall-festival-2026",
+      "title": "Annual Community Outreach Fall Festival",
+      "category": "church",
+      "churchId": "greater-st-paul",
+      "start": "2026-10-24T12:00:00-04:00",
+      "end": "2026-10-24T15:00:00-04:00",
+      "mode": "in-person",
+      "borough": "Brooklyn",
+      "location": "44 Rockaway Avenue, Brooklyn, NY 11233",
+      "text": "Greater St. Paul’s annual Community Outreach Fall Festival. Saturday, October 24, 2026, 12–3 PM. Family activities include a gaming truck, hot dogs, chips, popcorn and group games. The church flyer invites guests to wear a creative costume. Admission cost is not specified on the flyer; confirm with the church.",
+      "url": "https://zayaiken21.github.io/The-growing-Church/events.html#fall-festival-2026",
+      "image": "assets/photos/fall-festival-2026.jpeg",
+      "free": false,
+      "costNote": "Admission cost is not specified on the church flyer."
     }
   ]
 }
