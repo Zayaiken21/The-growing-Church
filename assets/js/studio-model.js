@@ -1,8 +1,9 @@
+import {renderGallery} from './gallery-model.js';
 export const DESIGN_PATH='assets/studio/design.json';
 export const LABELS_PATH='assets/studio/revision-names.json';
 export const REPO='Zayaiken21/The-growing-Church';
 export const BASE='https://zayaiken21.github.io/The-growing-Church/';
-export const PAGE_NAMES={'index.html':'Home','about.html':'About','ministries.html':'Ministries','sermons.html':'Watch','events.html':'Events','helping-hands.html':'Helping Hands','visit.html':'Plan a visit','give.html':'Give','privacy.html':'Privacy'};
+export const PAGE_NAMES={'index.html':'Home','about.html':'About','ministries.html':'Ministries','sermons.html':'Watch','events.html':'Events','helping-hands.html':'Helping Hands','visit.html':'Plan a visit','give.html':'Give','privacy.html':'Privacy','gallery.html':'Church Life'};
 export const clone=x=>JSON.parse(JSON.stringify(x));
 export const id=()=> 'b-'+crypto.randomUUID();
 export function safeLink(value,{image=false}={}){
@@ -21,7 +22,7 @@ export function validStyle(key,value){
 }
 export function validateDesign(d){
  if(!d||d.version!==1||!d.pages||!d.theme||!Array.isArray(d.navigation)||!Array.isArray(d.content?.ministries)||!Array.isArray(d.content?.events)||!Array.isArray(d.content?.slides)||typeof d.content?.settings?.name!=='string')throw Error('This is not a Church Studio backup.');
- if(JSON.stringify(d).length>12000000)throw Error('This draft is too large. Use smaller photos.');
+ if(JSON.stringify(d).length>12000000)throw Error('This draft is too large. Use smaller photos or videos.');
  for(const [p,page] of Object.entries(d.pages)){
   if(!/^[a-z0-9][a-z0-9-]*\.html$/.test(p)||p==='admin.html')throw Error('Invalid page name.');
   if(!Array.isArray(page.blocks)||!page.edits)throw Error('Invalid page layout.');
@@ -111,6 +112,8 @@ export function compilePage(raw,design,path,Parser=DOMParser){
  doc.querySelectorAll('[data-setting]').forEach(n=>n.textContent=design.content.settings[n.dataset.setting]||'');
  doc.querySelectorAll('[data-directions]').forEach(n=>n.href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(design.content.settings.address||''));
  const cards=doc.getElementById('ministries');if(cards){cards.replaceChildren();for(const item of design.content.ministries||[]){const a=doc.createElement('article');a.className='card';for(const [tag,text,cls]of [['h3',item.title,''],['p',item.text,''],['div',item.detail,'detail']]){const n=doc.createElement(tag);n.textContent=text||'';n.className=cls;a.append(n);}cards.append(a);}}
+ if(path==='gallery.html')renderGallery(doc,design.content.moments||[]);
  applyDesign(doc,design,path);
  return '<!doctype html>\n'+doc.documentElement.outerHTML;
 }
+

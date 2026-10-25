@@ -19,8 +19,8 @@ export class GitHubStore{
   if(live.sha!==this.designSHA)throw Error('Another editor published changes. Download your draft, reload the published version, and review their changes before publishing. Your draft is still here.');
   const clean=clone(design),entries=[],images=new Map();
   const walk=async obj=>{for(const [key,value]of Object.entries(obj)){if(value&&typeof value==='object')await walk(value);else if(typeof value==='string'){
-   const match=value.match(/data:image\/(?:png|jpeg|webp);base64,[A-Za-z0-9+/=]+/);if(!match)continue;const data=match[0];
-   if(!images.has(data)){const [header,content]=data.split(',');const type=header.match(/image\/(\w+)/)[1];const path='assets/photos/studio-'+crypto.randomUUID()+'.'+(type==='jpeg'?'jpg':type);const blob=await this.api('/repos/'+REPO+'/git/blobs','POST',{content,encoding:'base64'});entries.push({path,mode:'100644',type:'blob',sha:blob.sha});images.set(data,path);}obj[key]=value.replace(data,images.get(data));
+   const match=value.match(/data:(?:image\/(?:png|jpeg|webp)|video\/mp4);base64,[A-Za-z0-9+/=]+/);if(!match)continue;const data=match[0];
+   if(!images.has(data)){const [header,content]=data.split(',');const type=header.match(/(?:image|video)\/(\w+)/)[1];const path=(type==='mp4'?'assets/videos/':'assets/photos/')+'studio-'+crypto.randomUUID()+'.'+(type==='jpeg'?'jpg':type);const blob=await this.api('/repos/'+REPO+'/git/blobs','POST',{content,encoding:'base64'});entries.push({path,mode:'100644',type:'blob',sha:blob.sha});images.set(data,path);}obj[key]=value.replace(data,images.get(data));
   }}};await walk(clean);
   const pages=await compile(clean);
   for(const [path,content]of Object.entries(pages))entries.push({path,mode:'100644',type:'blob',content});
@@ -37,3 +37,4 @@ export class GitHubStore{
  async rename(sha,name){const head=await this.headNow();const names=JSON.parse((await this.file(LABELS_PATH,head)).text);names[sha]=name.trim().slice(0,100);return this.commit([{path:LABELS_PATH,mode:'100644',type:'blob',content:JSON.stringify(names,null,2)+'\n'}],'Name a Church Studio revision',head);}
  async deployment(sha){const r=await this.api('/repos/'+REPO+'/actions/runs?head_sha='+sha+'&per_page=10');return r.workflow_runs.find(x=>/pages/i.test(x.name))||null;}
 }
+

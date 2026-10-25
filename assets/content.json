@@ -98,6 +98,36 @@
       "free": false,
       "costNote": "Admission cost is not specified on the church flyer."
     }
+  ],
+  "moments": [
+    {
+      "id": "community-outreach-film",
+      "type": "video",
+      "category": "events",
+      "title": "Community outreach. Shared joy.",
+      "text": "Families, neighbors and familiar faces come together outside Greater St. Paul for the Community Outreach Fall Festival. A little glimpse of the joy we share when our church reaches out to the community.",
+      "url": "assets/videos/community-outreach.mp4",
+      "image": "assets/photos/community-outreach-poster.jpg",
+      "silent": true,
+      "accessibility": "A montage of moments outside the church, including children holding festival flyers and a playful dinosaur costume."
+    },
+    {
+      "id": "a-place-to-gather",
+      "type": "photo",
+      "category": "gatherings",
+      "title": "There is a place for you here.",
+      "text": "A look inside our church at 44 Rockaway Avenue, where we come together for worship, conversation and fellowship.",
+      "url": "assets/photos/sanctuary-visit.jpeg",
+      "alt": "Rows of burgundy chairs inside Greater St. Paul’s gathering space."
+    },
+    {
+      "id": "faith-in-the-everyday",
+      "type": "photo",
+      "category": "gatherings",
+      "title": "Faith in the everyday.",
+      "text": "A quiet corner of our church, with a reminder of God’s love from John 3:16.",
+      "url": "assets/photos/sanctuary-about.jpeg",
+      "alt": "Two chairs beneath a John 3:16 banner inside Greater St. Paul."
+    }
   ]
 }
-
