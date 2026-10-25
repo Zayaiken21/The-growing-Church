@@ -2,20 +2,31 @@
   "channelId": "UCZ8zYO9to_8PzUWwQj6xRBg",
   "channelName": "Greater St. Paul",
   "channelUrl": "https://www.youtube.com/@GreaterStPaulHDIWC",
-  "fetchedAt": "2026-10-25T17:13:53.933726+00:00",
+  "fetchedAt": "2026-10-25T19:41:19.736529+00:00",
   "source": "public-channel-refresh",
   "archiveComplete": false,
   "videos": [
     {
-      "id": "_B__Wj0YO1Q",
-      "title": "SUNDAY WORSHIP SERVICE 10.25.2026",
+      "id": "azJzksmwSc4",
+      "title": "GSP SUNDAY WORSHIP SERVICE 10.25.2026",
       "status": "live",
       "publishedAt": null,
       "scheduledStart": null,
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "2 watching"
+      "listingDetail": "5 watching"
+    },
+    {
+      "id": "_B__Wj0YO1Q",
+      "title": "SUNDAY WORSHIP SERVICE 10.25.2026",
+      "status": "completed",
+      "publishedAt": null,
+      "scheduledStart": null,
+      "actualStart": null,
+      "actualEnd": null,
+      "embeddable": true,
+      "listingDetail": "6 Streamed 2h ago"
     },
     {
       "id": "zixW9WD-Xdc",
@@ -26,7 +37,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "226 Streamed 7d ago"
+      "listingDetail": "231 Streamed 7d ago"
     },
     {
       "id": "Qg3aWqAQrA8",
@@ -37,7 +48,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "106 Streamed 7d ago"
+      "listingDetail": "109 Streamed 7d ago"
     },
     {
       "id": "vN-0LPKgAAk",
@@ -48,7 +59,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "135 Streamed 13d ago"
+      "listingDetail": "136 Streamed 2w ago"
     },
     {
       "id": "Rj5HjelA3Io",
@@ -59,7 +70,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "138 Streamed 2w ago"
+      "listingDetail": "140 Streamed 3w ago"
     },
     {
       "id": "xexVNixyppg",
@@ -92,7 +103,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "76 Streamed 3w ago"
+      "listingDetail": "76 Streamed 4w ago"
     },
     {
       "id": "6dc7uCKjlW0",
@@ -103,7 +114,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "165 Streamed 3w ago"
+      "listingDetail": "165 Streamed 4w ago"
     },
     {
       "id": "H4jiaGqRSDI",
