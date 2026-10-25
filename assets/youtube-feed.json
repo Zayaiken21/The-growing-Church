@@ -2,20 +2,20 @@
   "channelId": "UCZ8zYO9to_8PzUWwQj6xRBg",
   "channelName": "Greater St. Paul",
   "channelUrl": "https://www.youtube.com/@GreaterStPaulHDIWC",
-  "fetchedAt": "2026-10-25T19:41:19.736529+00:00",
+  "fetchedAt": "2026-10-25T22:04:24.059711+00:00",
   "source": "public-channel-refresh",
   "archiveComplete": false,
   "videos": [
     {
       "id": "azJzksmwSc4",
       "title": "GSP SUNDAY WORSHIP SERVICE 10.25.2026",
-      "status": "live",
+      "status": "completed",
       "publishedAt": null,
       "scheduledStart": null,
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "5 watching"
+      "listingDetail": "73 Streamed 1h ago"
     },
     {
       "id": "_B__Wj0YO1Q",
@@ -26,7 +26,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "6 Streamed 2h ago"
+      "listingDetail": "6 Streamed 4h ago"
     },
     {
       "id": "zixW9WD-Xdc",
@@ -37,7 +37,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "231 Streamed 7d ago"
+      "listingDetail": "232 Streamed 7d ago"
     },
     {
       "id": "Qg3aWqAQrA8",
@@ -92,7 +92,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "116 Streamed 3w ago"
+      "listingDetail": "116 Streamed 4w ago"
     },
     {
       "id": "ZeeORtSa-W8",
@@ -235,7 +235,7 @@
       "actualStart": null,
       "actualEnd": null,
       "embeddable": true,
-      "listingDetail": "115 Streamed 2mo ago"
+      "listingDetail": "116 Streamed 2mo ago"
     },
     {
       "id": "zafli9s2HxQ",
