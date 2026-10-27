@@ -97,14 +97,15 @@ function drawMoments(){
  const items=design.content.moments ||= [];
  tools.append(hint('Add real photos and short MP4 videos. Captions tell the story; categories help visitors explore. Video uploads can be up to 6 MB. Larger videos need a direct, publicly playable MP4 link.'));
  items.forEach((item,index)=>{const card=node('section',undefined,'content-card');card.append(node('h3',item.title||'New moment'));
- field(card,'Photo or video',item.type||'photo',v=>{changed(()=>item.type=v);drawTools();},'select',[['photo','Photo'],['video','Video (MP4)']]);
+ field(card,'Photo or video',item.type||'photo',v=>{changed(()=>item.type=v);drawTools();},'select',[['photo','Photo'],['video','Video (MP4)'],['youtube','YouTube video link']]);
  field(card,'Category',item.category||'gatherings',v=>changed(()=>item.category=v),'select',[['events','Events & outreach'],['gatherings','Church gatherings'],['members','Member moments']]);
+ field(card,'Event album name (leave blank for everyday church life)',item.album||'',v=>changed(()=>{item.album=v.trim();item.albumId=v.trim()?v.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-'):'';}));
  field(card,'Title',item.title,v=>changed(()=>item.title=v));field(card,'Tell the story',item.text,v=>changed(()=>item.text=v),'textarea');field(card,'Date (optional)',item.date||'',v=>changed(()=>item.date=v),'date');
  if(item.type==='video'){
  field(card,'Direct MP4 video link',item.url,v=>changed(()=>item.url=v));const input=node('input');input.type='file';input.accept='video/mp4';input.hidden=true;
  input.onchange=()=>run(async()=>{const file=input.files[0];if(!file)return;if(file.size>6*1024*1024)throw Error('Choose an MP4 smaller than 6 MB, or enter a direct MP4 link.');if(file.type!=='video/mp4')throw Error('Choose an MP4 video.');const data=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(Error('Unable to read this video.'));r.readAsDataURL(file);});changed(()=>item.url=data);message('Video added to your draft. Publish to save it on the website.');});
  card.append(input,button('Upload short MP4 video',()=>input.click()));imageControl(card,'Cover photo',item.image,v=>changed(()=>item.image=v));field(card,'Does this video have sound?',item.silent?'silent':'sound',v=>changed(()=>item.silent=v==='silent'),'select',[['sound','Has sound'],['silent','No audio']]);field(card,'Describe what happens in the video',item.accessibility||'',v=>changed(()=>item.accessibility=v),'textarea');
- }else{imageControl(card,'Photo',item.url,v=>changed(()=>item.url=v));field(card,'Describe this photo',item.alt||'',v=>changed(()=>item.alt=v));}
+ }else if(item.type==='youtube'){field(card,'YouTube video link',item.url,v=>changed(()=>item.url=v));imageControl(card,'Video cover photo',item.image,v=>changed(()=>item.image=v));}else{imageControl(card,'Photo',item.url,v=>changed(()=>item.url=v));field(card,'Describe this photo',item.alt||'',v=>changed(()=>item.alt=v));}
  card.append(row(button('Move up',()=>{if(index===0)return;changed(()=>[items[index-1],items[index]]=[items[index],items[index-1]]);drawTools();}),button('Remove moment',()=>{changed(()=>items.splice(index,1));drawTools();},'danger')));tools.append(card);
  });tools.append(button('＋ Add a church moment',()=>{changed(()=>items.push({id:'moment-'+crypto.randomUUID(),type:'photo',category:'gatherings',title:'New church moment',text:'',url:'',alt:''}));drawTools();},'primary'));
 }

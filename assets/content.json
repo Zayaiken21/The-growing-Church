@@ -111,7 +111,9 @@
       "silent": true,
       "accessibility": "A montage of moments outside the church, including children holding festival flyers and a playful dinosaur costume.",
       "date": "2026-10-24",
-      "flyer": "assets/photos/fall-festival-2026.jpeg"
+      "flyer": "assets/photos/fall-festival-2026.jpeg",
+      "album": "Annual Community Outreach Fall Festival",
+      "albumId": "fall-festival-2026"
     },
     {
       "id": "festival-together",
@@ -122,7 +124,9 @@
       "url": "assets/photos/festival-together.jpg",
       "alt": "Two children posing together in front of the festival backdrop.",
       "orientation": "landscape",
-      "date": "2026-10-24"
+      "date": "2026-10-24",
+      "album": "Annual Community Outreach Fall Festival",
+      "albumId": "fall-festival-2026"
     },
     {
       "id": "festival-gaming",
@@ -133,7 +137,9 @@
       "url": "assets/photos/festival-gaming.jpg",
       "alt": "A gaming truck parked outside the church at the festival.",
       "orientation": "landscape",
-      "date": "2026-10-24"
+      "date": "2026-10-24",
+      "album": "Annual Community Outreach Fall Festival",
+      "albumId": "fall-festival-2026"
     },
     {
       "id": "festival-portrait",
@@ -144,7 +150,9 @@
       "url": "assets/photos/festival-portrait.jpg",
       "alt": "A child in a black hat and jacket beside the autumn photo backdrop.",
       "orientation": "portrait",
-      "date": "2026-10-24"
+      "date": "2026-10-24",
+      "album": "Annual Community Outreach Fall Festival",
+      "albumId": "fall-festival-2026"
     },
     {
       "id": "festival-games",
@@ -155,7 +163,9 @@
       "url": "assets/photos/festival-games.jpg",
       "alt": "A person in a blue dinosaur costume beside the tic-tac-toe activity outside the church.",
       "orientation": "portrait",
-      "date": "2026-10-24"
+      "date": "2026-10-24",
+      "album": "Annual Community Outreach Fall Festival",
+      "albumId": "fall-festival-2026"
     },
     {
       "id": "festival-gifts",
@@ -166,7 +176,37 @@
       "url": "assets/photos/festival-gifts.jpg",
       "alt": "Rows of colorful gift bags arranged on a table.",
       "orientation": "landscape",
-      "date": "2026-10-24"
+      "date": "2026-10-24",
+      "album": "Annual Community Outreach Fall Festival",
+      "albumId": "fall-festival-2026"
+    },
+    {
+      "id": "our-sanctuary",
+      "type": "photo",
+      "category": "gatherings",
+      "title": "Inside our church home",
+      "text": "The sanctuary at 44 Rockaway Avenue, where we gather for worship and fellowship.",
+      "url": "assets/photos/sanctuary-visit.jpeg",
+      "alt": "Rows of burgundy chairs inside Greater St. Paul in Brooklyn."
+    },
+    {
+      "id": "word-in-our-home",
+      "type": "photo",
+      "category": "gatherings",
+      "title": "A reminder of His love",
+      "text": "John 3:16 on the wall of our church — words at the heart of our faith.",
+      "url": "assets/photos/sanctuary-about.jpeg",
+      "alt": "Two chairs beneath a John 3:16 banner inside the church."
+    },
+    {
+      "id": "worship-together",
+      "type": "youtube",
+      "category": "gatherings",
+      "title": "Worship with Greater St. Paul",
+      "text": "Join our church family through a service from Greater St. Paul’s YouTube channel.",
+      "url": "https://www.youtube.com/watch?v=Rj5HjelA3Io",
+      "image": "assets/photos/church-worship.jpg",
+      "alt": "The congregation during a Greater St. Paul worship service."
     }
   ]
 }
