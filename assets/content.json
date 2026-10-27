@@ -104,30 +104,69 @@
       "id": "community-outreach-film",
       "type": "video",
       "category": "events",
-      "title": "Community outreach. Shared joy.",
-      "text": "Families, neighbors and familiar faces come together outside Greater St. Paul for the Community Outreach Fall Festival. A little glimpse of the joy we share when our church reaches out to the community.",
+      "title": "Community Outreach Fall Festival",
+      "text": "A look back at Saturday on Rockaway Avenue: festival flyers in hand, a gaming truck outside, playful costumes and time together as a church community.",
       "url": "assets/videos/community-outreach.mp4",
       "image": "assets/photos/community-outreach-poster.jpg",
       "silent": true,
-      "accessibility": "A montage of moments outside the church, including children holding festival flyers and a playful dinosaur costume."
+      "accessibility": "A montage of moments outside the church, including children holding festival flyers and a playful dinosaur costume.",
+      "date": "2026-10-24",
+      "flyer": "assets/photos/fall-festival-2026.jpeg"
     },
     {
-      "id": "a-place-to-gather",
+      "id": "festival-together",
       "type": "photo",
-      "category": "gatherings",
-      "title": "There is a place for you here.",
-      "text": "A look inside our church at 44 Rockaway Avenue, where we come together for worship, conversation and fellowship.",
-      "url": "assets/photos/sanctuary-visit.jpeg",
-      "alt": "Rows of burgundy chairs inside Greater St. Paul’s gathering space."
+      "category": "events",
+      "title": "A moment together",
+      "text": "Pausing for a photo in front of the “Fall for Jesus” backdrop.",
+      "url": "assets/photos/festival-together.jpg",
+      "alt": "Two children posing together in front of the festival backdrop.",
+      "orientation": "landscape",
+      "date": "2026-10-24"
     },
     {
-      "id": "faith-in-the-everyday",
+      "id": "festival-gaming",
       "type": "photo",
-      "category": "gatherings",
-      "title": "Faith in the everyday.",
-      "text": "A quiet corner of our church, with a reminder of God’s love from John 3:16.",
-      "url": "assets/photos/sanctuary-about.jpeg",
-      "alt": "Two chairs beneath a John 3:16 banner inside Greater St. Paul."
+      "category": "events",
+      "title": "The gaming truck arrives",
+      "text": "The gaming truck outside the church on Rockaway Avenue.",
+      "url": "assets/photos/festival-gaming.jpg",
+      "alt": "A gaming truck parked outside the church at the festival.",
+      "orientation": "landscape",
+      "date": "2026-10-24"
+    },
+    {
+      "id": "festival-portrait",
+      "type": "photo",
+      "category": "events",
+      "title": "Ready for a photo",
+      "text": "A festival portrait beside the autumn backdrop.",
+      "url": "assets/photos/festival-portrait.jpg",
+      "alt": "A child in a black hat and jacket beside the autumn photo backdrop.",
+      "orientation": "portrait",
+      "date": "2026-10-24"
+    },
+    {
+      "id": "festival-games",
+      "type": "photo",
+      "category": "events",
+      "title": "A playful visitor",
+      "text": "A dinosaur costume joins the fun outside the church.",
+      "url": "assets/photos/festival-games.jpg",
+      "alt": "A person in a blue dinosaur costume beside the tic-tac-toe activity outside the church.",
+      "orientation": "portrait",
+      "date": "2026-10-24"
+    },
+    {
+      "id": "festival-gifts",
+      "type": "photo",
+      "category": "events",
+      "title": "Gifts ready to share",
+      "text": "Colorful gift bags lined up for the celebration.",
+      "url": "assets/photos/festival-gifts.jpg",
+      "alt": "Rows of colorful gift bags arranged on a table.",
+      "orientation": "landscape",
+      "date": "2026-10-24"
     }
   ]
 }
